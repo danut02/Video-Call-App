@@ -6,11 +6,37 @@
 <style>
     body{
     background-color: #e5c7ca;
+    
+    }
+    
+    .border-1{
+    background-color: #0077cc;
+    border-radius: 15px;
+    transition: 1s;
+    }
+    .border-1:hover{
+    background-color: #3dd5f3;
+    
+    }
+    input{
+     border-radius: 7px;
+     border-width: 0;
+     margin-bottom: 20px;
     }
     
 </style>
 <div class="text-center">
     <h1 class="display-4">Video Call App</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">web application</a>.</p>
+    <form class="form_container mx-auto text-center d-flex w-25 row">
+      
+        <label for="user">User name</label> <input id="user"/>
+        <label for="pass"> Password</label> <input id="pass"/>
+         <label for="confirm"> Confirm password</label> <input id="confirm"/>
+        <label for="email"> Email </label> <input id="email"/>
+        <label for="fname"> First Name</label> <input id="fname"/>
+        <label for="lname"> Last Name</label> <input id="lname"/>
+        <button class="w-25 border-1 mx-auto"> Submit </button>
+       
+    </form>
     
 </div>
