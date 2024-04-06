@@ -16,9 +16,15 @@ namespace VideoCallApp.Pages
         public UserViewModel theViewModelUser = new UserViewModel();
         public void OnGet(User theUser)
         {
-        /*    theViewModelUser.Username = theUser.Username;
-            theViewModelUser.ProfileImageUrl = theUser.ProfileImageUrl;
-        */
+            theViewModelUser.Username = theUser.Username;
+            foreach(var image in _dbContex.Images)
+            {
+                if(image.Id == theUser.ImageId) 
+                {
+                    theViewModelUser.theImage = image.Name;
+                    break;
+                }
+            }
         }
     }
 }

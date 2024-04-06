@@ -57,14 +57,18 @@
         <br />
         <label asp-for="theViewModel.Password">Password</label>
         <input type="text" asp-for="theViewModel.Password" size="50" />
-         <label asp-for="theViewModel.Password">Confirm password</label>
-                <input type="text" asp-for="theViewModel.Password" size="50" />
+        <label asp-for="theViewModel.Password">Confirm password</label>
+        <input type="password" asp-for="theViewModel.PasswordCopy" size="50" />
         <br />
         <label>The gender of the person</label>
-       
         <br/>
-        <label for="male"> Male </label> <input id="male" name="gender" type="radio"/>
-         <label for="female"> Female </label> <input id="female" name="gender" type="radio"/>
+        <label asp-for="theViewModel.Gender"> Male </label>
+        <input asp-for="theViewModel.Gender" type="radio" value="Male"/>
+        <label asp-for="theViewModel.Gender"> Female </label>
+        <input asp-for="theViewModel.Gender" type="radio" value="Female"/>
+        <br/>
+        <label asp-for="theViewModel.ProfileImageUrl">Insert an image</label>
+        <input asp-for="theViewModel.ProfileImageUrl" type="file"/>
         <br/>
         <input id="buttonSubmit" type="submit" value="Sign up" />
         <br />

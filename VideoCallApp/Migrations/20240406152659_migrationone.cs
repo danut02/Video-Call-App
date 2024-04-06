@@ -7,7 +7,7 @@
 namespace VideoCallApp.Migrations
 {
     /// <inheritdoc />
-    public partial class TheSpecificMigration : Migration
+    public partial class migrationone : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,7 @@ namespace VideoCallApp.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -57,6 +57,12 @@ namespace VideoCallApp.Migrations
                     { 1, "FemaleSexSymbol.png" },
                     { 2, "MaleSexSymbol.png" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Images_Name",
+                table: "Images",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_ImageId",

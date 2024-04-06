@@ -12,5 +12,9 @@
         {
             getAuditLog().Add("Password is wrong.Try again please. " + DateTime.Now);
         }
+        public static void addWrongPasswordSignUp()
+        {
+            getAuditLog().Add("Password is written wrong while signing up. " + DateTime.Now);
+        }
     }
 }

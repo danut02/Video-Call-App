@@ -12,6 +12,7 @@ namespace VideoCallApp.Pages
         private VideoCallApplicationDbContext _dbContext;
         public static int counterWrong = 0;
         public static bool banned = false;
+        public static bool userGotWrong;
         public static DateTime timeBegin;
         public static DateTime timeEnd;
         public LogInModel(VideoCallApplicationDbContext dbContext)
@@ -28,11 +29,13 @@ namespace VideoCallApp.Pages
             if (!banned) {
                 if (counterWrong < 6)
                 {
+                    userGotWrong = true;
                     var theUserList = _dbContext.Users.ToList();
                     for (int i = 0; i < theUserList.Count(); i++)
                     {
                         if (theUserList.ElementAt(i).Username == theViewModel.Username)
                         {
+                            userGotWrong = false;
                             if (theUserList.ElementAt(i).Password == theViewModel.Password)
                             {
                                 return RedirectToPage("VideoCallMenu",theUserList.ElementAt(i));
@@ -44,13 +47,12 @@ namespace VideoCallApp.Pages
                                 break;
                             }
                         }   
-                        else
-                        {
-                            counterWrong++;
-                            AuditLog.addInAuditLogWhenUsernameWrong();
-                            break;
-                        }
-                    }         
+                    }
+                    if (userGotWrong)
+                    {
+                        counterWrong++;
+                        AuditLog.addInAuditLogWhenUsernameWrong();
+                    }
                     return RedirectToPage("Error");
                 }
                 else
@@ -65,7 +67,7 @@ namespace VideoCallApp.Pages
             {
                 timeEnd = DateTime.Now;
                 TimeSpan interval = timeEnd.Subtract(timeBegin);
-                if (interval.Minutes > 30)
+                if (interval.Minutes > 29)
                 {
                     banned = false;
                 }

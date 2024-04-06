@@ -17,38 +17,57 @@ namespace VideoCallApp.Pages
         public void OnGet()
         {
         }
-        public void OnPost()
+        public IActionResult OnPost()
         {
-            /*if (theViewModel.ProfileImageUrl is null || theViewModel.ProfileImageUrl.Length == 0)
+            Image _toAddImage = new Image();
+            User _toAddUser = new User();
+            if(theViewModel.Password == theViewModel.PasswordCopy)
             {
-                if (theViewModel.Gender == "Female")
+                if (theViewModel.ProfileImageUrl is null)
                 {
-                    //theViewModel.ProfileImageUrl = "/images/FemaleSexSymbol.png";
+                    _toAddUser = new User()
+                    {
+                        FirstName = theViewModel.FirstName,
+                        LastName = theViewModel.LastName,
+                        Username = theViewModel.Username,
+                        Password = theViewModel.Password,
+                        UserEmail = theViewModel.UserEmail,
+                        Gender = theViewModel.Gender,
+                    };
+                    if (theViewModel.Gender == "Female")
+                    {
+                        _toAddUser.ImageId = 1;
+                    }
+                    if (theViewModel.Gender == "Male")
+                    {
+                        _toAddUser.ImageId = 2;
+                    }
                 }
-                if (theViewModel.Gender == "Male")
+                if (theViewModel.ProfileImageUrl is not null)
                 {
-                    theViewModel.ProfileImageUrl = "/images/MaleSexSymbol.png";
+                    _toAddImage = new Image()
+                    {
+                        Name = theViewModel.ProfileImageUrl.FileName,
+                    };
+                    _dbContex.Images.Add(_toAddImage);
+                    _dbContex.SaveChanges();
+                    foreach (var elemUserImage in _dbContex.Images)
+                    {
+                        if (elemUserImage.Name == theViewModel.ProfileImageUrl.FileName)
+                        {
+                            _toAddUser.ImageId = elemUserImage.Id;
+                        }
+                    }
                 }
+                _dbContex.Users.Add(_toAddUser);
+                _dbContex.SaveChanges();
             }
-            var _toAddUser = new User()
+            else
             {
-                FirstName = theViewModel.FirstName,
-                LastName = theViewModel.LastName,
-                Username = theViewModel.Username,
-                Password = theViewModel.Password,
-                UserEmail = theViewModel.UserEmail,
-                Gender = theViewModel.Gender,
-            };
-            _dbContex.Users.Add(_toAddUser);
-            _dbContex.SaveChanges();
-            var _toAddImage = new Image()
-            {
-                Name = theViewModel.ProfileImageUrl.FileName,
-                UserId =_toAddUser.UserId,
-            };
-            _dbContex.Images.Add(_toAddImage);
-            _dbContex.SaveChanges();
-            */
+                AuditLog.addWrongPasswordSignUp();
+                return RedirectToPage("Error");
+            }
+            return RedirectToPage("LogIn");
         }
     }
 }

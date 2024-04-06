@@ -11,8 +11,8 @@ using VideoCallApp.Data;
 namespace VideoCallApp.Migrations
 {
     [DbContext(typeof(VideoCallApplicationDbContext))]
-    [Migration("20240406110749_TheSpecificMigration")]
-    partial class TheSpecificMigration
+    [Migration("20240406152659_migrationone")]
+    partial class migrationone
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,9 +34,12 @@ namespace VideoCallApp.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Images");
 

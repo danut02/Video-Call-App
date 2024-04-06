@@ -12,6 +12,8 @@ namespace VideoCallApp.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Image>().HasData(new Image { Id = 1, Name = "FemaleSexSymbol.png" });
             modelBuilder.Entity<Image>().HasData(new Image { Id = 2, Name = "MaleSexSymbol.png" });
+            modelBuilder.Entity<Image>().HasIndex(e => e.Name)
+                .IsUnique();
             modelBuilder.Entity<User>().
                 HasOne(e => e.theImage).
                 WithMany(e => e.Users).
