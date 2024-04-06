@@ -23,7 +23,13 @@
                         <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Privacy"> About </a>
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/SignIn">Sign in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/LogIn">Log in</a>
                     </li>
                 </ul>
             </div>
@@ -38,7 +44,7 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 
+        &copy; 2024 - VideoCallApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
     </div>
 </footer>
 
@@ -48,11 +54,4 @@
 
 @await RenderSectionAsync("Scripts", required: false)
 </body>
-<script>
- let footer_text = document.querySelector(".border-top.footer.text-muted").childNodes[1];
- 
- let text = new Date().getFullYear();
- text+=" Video Call App ";
- footer_text.textContent+= text;
-</script>
 </html>

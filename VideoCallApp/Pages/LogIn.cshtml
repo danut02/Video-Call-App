@@ -1,0 +1,25 @@
+﻿@page
+@model VideoCallApp.Pages.LogInModel
+@{
+}
+<form method="post">
+        <fieldset>
+            <legend>Log in</legend>
+            <label asp-for="theViewModel.Username">Username</label>
+            <input type="text" asp-for="theViewModel.Username" size="50" />
+            <div>
+                <span asp-validation-for="theViewModel.Username"></span>
+            </div>
+            <br />
+            <label asp-for="theViewModel.Password">Password</label>
+            <input type="password" asp-for="theViewModel.Password" size="50" />
+            <div>
+                <span asp-validation-for="theViewModel.Password"></span>
+            </div>
+            <br />
+            <input type="submit" value="Log in" />
+        </fieldset>
+ </form>
+
+
+

@@ -24,3 +24,13 @@
     For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
     and restarting the app.
 </p>
+@if(Model.logError is not null){
+    @if (Model.logError.Count() > 0)
+    {
+        <h1 class="align-content-md-center text-danger">The errors</h1>
+        @foreach (var _Logs in Model.logError)
+        {
+            <p class="align-content-md-center">@_Logs</p>
+        }
+    }   
+}

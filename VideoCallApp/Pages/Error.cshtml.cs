@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using VideoCallApp.Models;
 
 namespace VideoCallApp.Pages;
 
@@ -9,7 +10,7 @@ namespace VideoCallApp.Pages;
 public class ErrorModel : PageModel
 {
     public string? RequestId { get; set; }
-
+    public List<string> logError = AuditLog.getAuditLog();
     public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
     private readonly ILogger<ErrorModel> _logger;
