@@ -3,6 +3,45 @@
 @{
     ViewData["Title"]="Login";
 }
+
+<head>
+    <style>
+
+        body{
+            background-color: #e5c7ca;
+        }
+
+        fieldset {
+            width: 150px ;
+            text-align: center ;
+            margin : 0 auto;
+        }
+
+        input {
+            width: 240px;
+            margin-left : -40px;
+            border-radius : 10px;
+            border-width : 0 ;
+        }
+
+        #submit {
+            width: 100px;
+            border-radius : 15px;
+            border-width : 0;
+            background-color : red;
+            color :whitesmoke;
+            margin-bottom : 40px;
+            transition : 1s;
+        }
+
+        #submit:hover {
+            background-color: darkred;
+            font-size: larger;
+        }
+
+    </style>
+</head>
+
 <form method="post">
         <fieldset>
             <legend>Log in</legend>
@@ -18,7 +57,8 @@
                 <span asp-validation-for="theViewModel.Password"></span>
             </div>
             <br />
-            <input type="submit" value="Log in" />
+            <button id="submit" type="submit" > Log in </button>
+            <a href="#">Forgot password ?</a>
         </fieldset>
  </form>
 
