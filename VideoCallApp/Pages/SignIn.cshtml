@@ -1,10 +1,48 @@
 ﻿@page
 @model VideoCallApp.Pages.SignInModel
 @{
+    ViewData["Title"]="Sign Up";
 }
+<head>
+    
+    <style>
+    
+    body{
+    background-color: #e5c7ca;
+    }
+        fieldset{
+    
+         width: 30%;
+        
+        }
+        input{
+        margin-bottom: 25px;
+        border-radius: 15px;
+        border-width: 0;
+        } 
+        form{
+         background-color: #5c636a;
+         border-radius: 10px;
+         margin-right: 60%;
+         margin-left: -40px;
+         padding-left: 40px;
+        }
+        #buttonSubmit{
+        transition: 1.5s;
+        border-radius: 18px;
+        color: #d3d3d4;
+        background-color: #0f5132;
+        }
+        #buttonSubmit:hover{
+        background-color: chartreuse;
+        color: #1e2125;
+        }
+    </style>
+    <title> Sign Up </title>
+</head>
 <form method="post" enctype="multipart/form-data">
     <fieldset>
-        <legend>Sign in</legend>
+        <legend>Sign Up</legend>
         <label asp-for="theViewModel.FirstName">First name</label>
         <input asp-for="theViewModel.FirstName" type="text" size="50" />
         <br />
@@ -19,18 +57,16 @@
         <br />
         <label asp-for="theViewModel.Password">Password</label>
         <input type="text" asp-for="theViewModel.Password" size="50" />
+         <label asp-for="theViewModel.Password">Confirm password</label>
+                <input type="text" asp-for="theViewModel.Password" size="50" />
         <br />
-        <label>The sex of the person</label>
-        <br />
-        <input type="radio" asp-for="theViewModel.Gender" value="Male" />
-        <label asp-for="theViewModel.Gender">Male</label>
-        <br />
-        <input type="radio" asp-for="theViewModel.Gender" value="Female" />
-        <label asp-for="theViewModel.Gender">Female</label>
-        <br />
-        <input type="file" asp-for="theViewModel.ProfileImageUrl"/>
+        <label>The gender of the person</label>
+       
         <br/>
-        <input type="submit" value="Sign in" />
+        <label for="male"> Male </label> <input id="male" name="gender" type="radio"/>
+         <label for="female"> Female </label> <input id="female" name="gender" type="radio"/>
+        <br/>
+        <input id="buttonSubmit" type="submit" value="Sign up" />
         <br />
     </fieldset>
 </form>
