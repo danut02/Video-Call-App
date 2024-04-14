@@ -1,5 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using VideoCallApp.Data;
 using VideoCallApp.Models;
 
@@ -21,29 +22,34 @@ namespace VideoCallApp.Pages
         {
             Image _toAddImage = new Image();
             User _toAddUser = new User();
-            if(theViewModel.Password == theViewModel.PasswordCopy)
+            if (!ModelState.IsValid)
             {
-                if (theViewModel.ProfileImageUrl is null)
+                return Page();
+            }
+
+            if (theViewModel.Password != theViewModel.PasswordCopy)
+            {
+                ModelState.AddModelError(string.Empty, "Password and Confirm Password do not match.");
+                return Page();
+            }
+
+            var user = new User
+            {
+                FirstName = theViewModel.FirstName,
+                LastName = theViewModel.LastName,
+                Username = theViewModel.Username,
+                Password = theViewModel.Password,
+                UserEmail = theViewModel.UserEmail,
+                Gender = theViewModel.Gender
+            };
+            if (theViewModel.ProfileImageUrl != null)
+            {
+                var image = new Image
                 {
-                    _toAddUser = new User()
-                    {
-                        FirstName = theViewModel.FirstName,
-                        LastName = theViewModel.LastName,
-                        Username = theViewModel.Username,
-                        Password = theViewModel.Password,
-                        UserEmail = theViewModel.UserEmail,
-                        Gender = theViewModel.Gender,
-                    };
-                    if (theViewModel.Gender == "Female")
-                    {
-                        _toAddUser.ImageId = 1;
-                    }
-                    if (theViewModel.Gender == "Male")
-                    {
-                        _toAddUser.ImageId = 2;
-                    }
-                }
-                if (theViewModel.ProfileImageUrl is not null)
+                    Name = theViewModel.ProfileImageUrl.FileName
+                };
+
+                using (var fileStream = new FileStream("wwwroot/images/" + theViewModel.ProfileImageUrl.FileName, FileMode.Create))
                 {
                     _toAddImage = new Image()
                     {
@@ -58,16 +64,20 @@ namespace VideoCallApp.Pages
                             _toAddUser.ImageId = elemUserImage.Id;
                         }
                     }
+                    theViewModel.ProfileImageUrl.CopyTo(fileStream);
                 }
-                _dbContex.Users.Add(_toAddUser);
+
+                _dbContex.Images.Add(image);
                 _dbContex.SaveChanges();
+
+                user.ImageId = image.Id;
             }
-            else
-            {
-                AuditLog.addWrongPasswordSignUp();
-                return RedirectToPage("Error");
-            }
+
+            _dbContex.Users.Add(user);
+            _dbContex.SaveChanges();
+
             return RedirectToPage("LogIn");
         }
     }
 }
+
