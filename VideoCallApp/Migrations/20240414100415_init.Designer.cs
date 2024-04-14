@@ -11,8 +11,8 @@ using VideoCallApp.Data;
 namespace VideoCallApp.Migrations
 {
     [DbContext(typeof(VideoCallApplicationDbContext))]
-    [Migration("20240406152659_migrationone")]
-    partial class migrationone
+    [Migration("20240414100415_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -4,6 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>4ae25605-74af-4533-8679-f645e91d381a</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,6 +17,25 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Migrations\20240406152659_migrationone.cs" />
+      <Compile Remove="Migrations\20240406152659_migrationone.Designer.cs" />
+      <Compile Remove="Migrations\VideoCallApplicationDbContextModelSnapshot.cs" />
+      <Compile Remove="Migrations\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Migrations\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Migrations\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Migrations\**" />
     </ItemGroup>
 
 </Project>
