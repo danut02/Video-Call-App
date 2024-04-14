@@ -15,7 +15,7 @@
          width: 30%;
         
         }
-        input{
+        .input_fields{
         margin-bottom: 25px;
         border-radius: 15px;
         border-width: 0;
@@ -29,6 +29,7 @@
         }
         #buttonSubmit{
         transition: 1.5s;
+        margin-bottom:15px;
         border-radius: 18px;
         color: #d3d3d4;
         background-color: #0f5132;
@@ -37,6 +38,10 @@
         background-color: chartreuse;
         color: #1e2125;
         }
+        #upload{
+
+            margin-bottom:15px;
+        }
     </style>
     <title> Sign Up </title>
 </head>
@@ -44,31 +49,31 @@
     <fieldset>
         <legend>Sign Up</legend>
         <label asp-for="theViewModel.FirstName">First name</label>
-        <input asp-for="theViewModel.FirstName" type="text" size="50" />
+        <input class="input_fields" asp-for="theViewModel.FirstName" type="text" size="50" />
         <br />
         <label asp-for="theViewModel.LastName">Last name</label>
-        <input type="text" asp-for="theViewModel.LastName" size="50" />
+        <input class="input_fields" type="text" asp-for="theViewModel.LastName" size="50" />
         <br />
         <label asp-for="theViewModel.UserEmail">Email</label>
-        <input type="email" asp-for="theViewModel.UserEmail" size="50" />
+        <input class="input_fields" type="email" asp-for="theViewModel.UserEmail" size="50" />
         <br />
         <label asp-for="theViewModel.Username">Username</label>
-        <input type="text" asp-for="theViewModel.Username" size="50" />
+        <input class="input_fields" type="text" asp-for="theViewModel.Username" size="50" />
         <br />
         <label asp-for="theViewModel.Password">Password</label>
-        <input type="text" asp-for="theViewModel.Password" size="50" />
+        <input class="input_fields" type="text" asp-for="theViewModel.Password" size="50" />
         <label asp-for="theViewModel.Password">Confirm password</label>
-        <input type="password" asp-for="theViewModel.PasswordCopy" size="50" />
+        <input class="input_fields" type="password" asp-for="theViewModel.PasswordCopy" size="50" />
         <br />
         <label>The gender of the person</label>
         <br/>
         <label asp-for="theViewModel.Gender"> Male </label>
-        <input asp-for="theViewModel.Gender" type="radio" value="Male"/>
+        <input class="input_fields" asp-for="theViewModel.Gender" type="radio" value="Male" />
         <label asp-for="theViewModel.Gender"> Female </label>
-        <input asp-for="theViewModel.Gender" type="radio" value="Female"/>
+        <input class="input_fields" asp-for="theViewModel.Gender" type="radio" value="Female"/>
         <br/>
         <label asp-for="theViewModel.ProfileImageUrl">Insert an image</label>
-        <input asp-for="theViewModel.ProfileImageUrl" type="file"/>
+        <input id="upload"  asp-for="theViewModel.ProfileImageUrl" type="file"/>
         <br/>
         <input id="buttonSubmit" type="submit" value="Sign up" />
         <br />
