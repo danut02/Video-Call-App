@@ -49,6 +49,11 @@ namespace VideoCallApp.Pages
                     {
                         Name = theViewModel.ProfileImageUrl.FileName,
                     };
+                    using (var fileStream = new FileStream("wwwroot\\images\\"
+                        +theViewModel.ProfileImageUrl.FileName
+                        ,FileMode.Create)) {
+                        theViewModel.ProfileImageUrl.CopyTo(fileStream);
+                    }
                     _dbContex.Images.Add(_toAddImage);
                     _dbContex.SaveChanges();
                     foreach (var elemUserImage in _dbContex.Images)

@@ -27,22 +27,20 @@
          margin-left: -40px;
          padding-left: 40px;
         }
-        .upload_img{
-        margin-bottom: 15px;
-        }
-        .radio_input{
-        margin-bottom: 20px;
-        }
         #buttonSubmit{
         transition: 1.5s;
+        margin-bottom:15px;
         border-radius: 18px;
         color: #d3d3d4;
         background-color: #0f5132;
-        margin-bottom: 20px;
         }
         #buttonSubmit:hover{
         background-color: chartreuse;
         color: #1e2125;
+        }
+        #upload{
+
+            margin-bottom:15px;
         }
     </style>
     <title> Sign Up </title>
@@ -70,12 +68,12 @@
         <label>The gender of the person</label>
         <br/>
         <label asp-for="theViewModel.Gender"> Male </label>
-        <input  asp-for="theViewModel.Gender" type="radio" value="Male"/>
+        <input class="input_fields" asp-for="theViewModel.Gender" type="radio" value="Male" />
         <label asp-for="theViewModel.Gender"> Female </label>
-        <input class="radio_input" asp-for="theViewModel.Gender" type="radio" value="Female"/>
+        <input class="input_fields" asp-for="theViewModel.Gender" type="radio" value="Female"/>
         <br/>
         <label asp-for="theViewModel.ProfileImageUrl">Insert an image</label>
-        <input class="upload_img" asp-for="theViewModel.ProfileImageUrl" type="file" />
+        <input id="upload"  asp-for="theViewModel.ProfileImageUrl" type="file"/>
         <br/>
         <input id="buttonSubmit" type="submit" value="Sign up" />
         <br />
