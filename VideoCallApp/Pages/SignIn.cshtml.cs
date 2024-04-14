@@ -29,8 +29,8 @@ namespace VideoCallApp.Pages
 
             if (theViewModel.Password != theViewModel.PasswordCopy)
             {
-                ModelState.AddModelError(string.Empty, "Password and Confirm Password do not match.");
-                return Page();
+                   AuditLog.addWrongPasswordSignUp();
+                   return RedirectToPage("Error");
             }
 
             var user = new User
