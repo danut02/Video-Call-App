@@ -1,18 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using VideoCallApp.Data;
+using VideoCallApp.Models;
 
 namespace VideoCallApp.Pages;
 
 public class IndexModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
-
-    public IndexModel(ILogger<IndexModel> logger)
+    private readonly VideoCallApplicationDbContext theContext;
+    public IndexModel(VideoCallApplicationDbContext theDbContext)
     {
-        _logger = logger;
+        theContext = theDbContext;
     }
-
-    public void OnGet()
+    [BindProperty]
+    public User theUser {  get; set; }
+    public List<User> Users { get; set; }
+    public List<Image> Images { get; set; }
+    public void OnGet(User user)
     {
+        theUser = user;
+        Users = theContext.Users.ToList();
+        Images = theContext.Images.ToList();
     }
 }

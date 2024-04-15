@@ -5,12 +5,89 @@
 }
 <style>
     body{
-    background-color: #e5c7ca;
+        background-color: #e5c7ca;
     }
-    
+    table{
+        font-size:30px;
+        list-style-type:none;
+        border-bottom:5px rgb(45,200,100) solid;
+        line-height:75px;
+    }
+    table{
+        min-width:90%;
+        margin-inline-start:2%;
+    }
+    table tr td{
+        padding-inline-start:10%;
+        padding-inline-end:20%;
+        text-align:left;
+    }
+    table tr td:nth-child(3n) {
+       background-color: rgb(225, 233, 235);
+       background-origin: padding-box;
+       background-clip: border-box;
+       text-align:left;
+    }
+
+    table tr td:nth-child(3n+1) {
+        background-color: rgb(242, 233, 235);
+        background-origin: padding-box;    
+        background-clip: border-box;
+        text-align: left;
+    }
+
+    table tr td:nth-child(3n+2) {
+        background-color: rgb(225, 239, 235);
+        background-origin: padding-box;
+        background-clip: border-box;
+        text-align: center;
+    }
+    p.user{
+        font-size:35px;
+        text-align:right;
+        letter-spacing:20px;
+    }
+    p.user a:link{
+        text-decoration-line:none;
+        color: rgb(191, 217, 208);
+    }
+    p.user a:hover{
+        text-decoration-line:none;
+        color: rgb(106, 193, 162);
+    }
+
+    p.user a:active{
+        text-decoration-line: none;
+        color: rgb(106, 193, 167)
+    }
+    p.user a:visited{
+        text-decoration-line: none;
+        color: rgb(17, 21, 19);
+    }
 </style>
 <div class="text-center">
-    <h1 class="display-4">Video Call App</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">web application</a>.</p>
-    
+    @if(Model.theUser.UserId is 0 || Model.theUser.Username is "" || Model.theUser.Password is "" || Model.theUser.UserEmail is ""){
+        <h1 class="display-4">Video Call App</h1>
+        <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">web application</a>.</p>
+    }
+    else{
+        <p class="user"><a href="VideoCallProfile/@Model.theUser.UserId">See profile: @Model.theUser.Username</a></p>
+        <table>
+            @foreach(var user in Model.Users)
+            {
+                @if(user.UserId != Model.theUser.UserId){
+                    <tr>
+                        @foreach(var image in Model.Images){
+                            @if(user.ImageId == image.Id){
+                                <td>@user.Username <img src="/images/@image.Name" style="float:left;width:50px;height:50px;border-radius:45px;"/></td>
+                                break;
+                            }
+                        }
+                        <td><a href="">Call</a></td>
+                        <td><a href="">View details</a></td>
+                    </tr>
+                }
+            }
+        </table>
+    }   
 </div>

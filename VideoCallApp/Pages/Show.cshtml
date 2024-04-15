@@ -1,0 +1,14 @@
+﻿@page
+@model VideoCallApp.Pages.ShowModel
+@{
+    ViewData["Title"] = "Forgot";
+    Layout = "_Layout";
+}
+<h1>The possible passwords</h1>
+@if (Model.theUsers is not null)
+{
+    @foreach (var variable in Model.theUsers)
+    {
+        <p>@variable.Password</p>
+    }
+}

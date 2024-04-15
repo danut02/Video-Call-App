@@ -12,6 +12,7 @@ namespace VideoCallApp.Models
         public string Username { get; set; } = string.Empty;
         [Required]
         public string Password { get; set; } = string.Empty;
+        public string PasswordNew { get; set; } = string.Empty;
         public string PasswordCopy { get; set; } = string.Empty;
         [Required]
         public string UserEmail { get; set; } = string.Empty;

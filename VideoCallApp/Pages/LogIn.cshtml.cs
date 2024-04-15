@@ -38,7 +38,7 @@ namespace VideoCallApp.Pages
                             userGotWrong = false;
                             if (theUserList.ElementAt(i).Password == theViewModel.Password)
                             {
-                                return RedirectToPage("VideoCallMenu",theUserList.ElementAt(i));
+                                return RedirectToPage("Index",theUserList.ElementAt(i));
                             }
                             else
                             {
