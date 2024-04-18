@@ -53,16 +53,6 @@ namespace VideoCallApp.Pages
                 {
                     theViewModel.ProfileImageUrl.CopyTo(fileStream);
                 }
-                /*
-                foreach (var elemUserImage in _dbContex.Images)
-                {
-                    if (elemUserImage.Name == theViewModel.ProfileImageUrl.FileName)
-                    {
-                        user.ImageId = elemUserImage.Id;
-                        break;
-                    }
-                }
-                */
                 var theImage = _dbContex.Images.ToList();
                 theImage = theImage.Where(e=>e.Name == theViewModel.ProfileImageUrl.FileName).ToList();
                 user.ImageId = theImage.ElementAt(0).Id;
