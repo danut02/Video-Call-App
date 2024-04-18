@@ -21,11 +21,6 @@ namespace VideoCallApp.Pages
         public IActionResult OnPost()
         {
             Image _toAddImage = new Image();
-            User _toAddUser = new User();
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
 
             if (theViewModel.Password != theViewModel.PasswordCopy)
             {
@@ -48,29 +43,40 @@ namespace VideoCallApp.Pages
                 {
                     Name = theViewModel.ProfileImageUrl.FileName
                 };
-
+                _toAddImage = new Image()
+                {
+                    Name = theViewModel.ProfileImageUrl.FileName,
+                };
+                _dbContex.Images.Add(_toAddImage);
+                _dbContex.SaveChanges();
                 using (var fileStream = new FileStream("wwwroot/images/" + theViewModel.ProfileImageUrl.FileName, FileMode.Create))
                 {
-                    _toAddImage = new Image()
-                    {
-                        Name = theViewModel.ProfileImageUrl.FileName,
-                    };
-                    _dbContex.Images.Add(_toAddImage);
-                    _dbContex.SaveChanges();
-                    foreach (var elemUserImage in _dbContex.Images)
-                    {
-                        if (elemUserImage.Name == theViewModel.ProfileImageUrl.FileName)
-                        {
-                            _toAddUser.ImageId = elemUserImage.Id;
-                        }
-                    }
                     theViewModel.ProfileImageUrl.CopyTo(fileStream);
                 }
-
-                _dbContex.Images.Add(image);
-                _dbContex.SaveChanges();
-
-                user.ImageId = image.Id;
+                /*
+                foreach (var elemUserImage in _dbContex.Images)
+                {
+                    if (elemUserImage.Name == theViewModel.ProfileImageUrl.FileName)
+                    {
+                        user.ImageId = elemUserImage.Id;
+                        break;
+                    }
+                }
+                */
+                var theImage = _dbContex.Images.ToList();
+                theImage = theImage.Where(e=>e.Name == theViewModel.ProfileImageUrl.FileName).ToList();
+                user.ImageId = theImage.ElementAt(0).Id;
+            }
+            else
+            {
+                if(theViewModel.Gender == "Female")
+                {
+                    user.ImageId = 1;
+                }
+                else
+                {
+                    user.ImageId = 2;
+                }
             }
 
             _dbContex.Users.Add(user);

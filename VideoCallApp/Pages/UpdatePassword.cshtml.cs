@@ -25,33 +25,38 @@ namespace VideoCallApp.Pages
         {
             var theUserToChange = new User();
             var theSelectedUser = new User();
+            var Users = _dbContext.Users.ToList();
             theSelectedUser = _dbContext.Users.Find(theChangedUser.UserId);
             theUserToChange = _dbContext.Users.Find(theChangedUser.UserId);
             if (theModel is not null)
             {
-                if( theModel.Password == theSelectedUser.Password ) {
-
-                    theUserToChange.Username = theSelectedUser.Username;
-                    theUserToChange.UserEmail = theSelectedUser.UserEmail;
-                    theUserToChange.Password = theModel.PasswordNew;
-                    theUserToChange.Gender = theSelectedUser.Gender;
-                    theUserToChange.FirstName = theSelectedUser.FirstName;
-                    theUserToChange.LastName = theSelectedUser.LastName;
-                    theUserToChange.ImageId = theSelectedUser.ImageId;
-                    theUserToChange.UserId = theSelectedUser.UserId;
-                    _dbContext.SaveChanges();
-                }
-                else
+                if (Users.Where(e => e.Password == theModel.Password && e.UserId == theSelectedUser.UserId).Any())
                 {
-                    theUserToChange.Username = theSelectedUser.Username;
-                    theUserToChange.UserEmail = theSelectedUser.UserEmail;
-                    theUserToChange.Password = theModel.Password;
-                    theUserToChange.Gender = theSelectedUser.Gender;
-                    theUserToChange.FirstName = theSelectedUser.FirstName;
-                    theUserToChange.LastName = theSelectedUser.LastName;
-                    theUserToChange.ImageId = theSelectedUser.ImageId;
-                    theUserToChange.UserId = theSelectedUser.UserId;
-                    _dbContext.SaveChanges();
+                    if (theModel.Password == theSelectedUser.Password)
+                    {
+
+                        theUserToChange.Username = theSelectedUser.Username;
+                        theUserToChange.UserEmail = theSelectedUser.UserEmail;
+                        theUserToChange.Password = theModel.PasswordNew;
+                        theUserToChange.Gender = theSelectedUser.Gender;
+                        theUserToChange.FirstName = theSelectedUser.FirstName;
+                        theUserToChange.LastName = theSelectedUser.LastName;
+                        theUserToChange.ImageId = theSelectedUser.ImageId;
+                        theUserToChange.UserId = theSelectedUser.UserId;
+                        _dbContext.SaveChanges();
+                    }
+                    else
+                    {
+                        theUserToChange.Username = theSelectedUser.Username;
+                        theUserToChange.UserEmail = theSelectedUser.UserEmail;
+                        theUserToChange.Password = theModel.Password;
+                        theUserToChange.Gender = theSelectedUser.Gender;
+                        theUserToChange.FirstName = theSelectedUser.FirstName;
+                        theUserToChange.LastName = theSelectedUser.LastName;
+                        theUserToChange.ImageId = theSelectedUser.ImageId;
+                        theUserToChange.UserId = theSelectedUser.UserId;
+                        _dbContext.SaveChanges();
+                    }
                 }
             }
             return RedirectToPage("VideoCallProfile", theUserToChange);

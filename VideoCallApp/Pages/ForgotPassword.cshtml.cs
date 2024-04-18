@@ -25,7 +25,14 @@ namespace VideoCallApp.Pages
             {
                 list = _dbContext.Users.Where(e => e.UserEmail == theModel.UserEmail).ToList();
             }
-            return RedirectToPage("Show", list.ElementAt(0));
+            if (list.Count > 0)
+            {
+                return RedirectToPage("Show", list.ElementAt(0));
+            }
+            else
+            {
+                return Page();
+            }
         }
         
     }
