@@ -39,10 +39,13 @@
             font-size: larger;
         }
 
+        #form_container {
+            transition: 2s;
+            opacity: 0;}
     </style>
 </head>
 
-<form method="post">
+<form id="form_container" method="post">
         <fieldset>
             <legend>Log in</legend>
             <label asp-for="theViewModel.Username">Username</label>
@@ -62,5 +65,13 @@
         </fieldset>
  </form>
 
+<script>
+
+    let container = document.getElementById("form_container");
+
+    document.addEventListener('DOMContentLoaded', () => {
+        container.style.opacity = "1";
+    });
+</script>
 
 

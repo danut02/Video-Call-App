@@ -100,7 +100,11 @@
     #containerbutt {
         margin-left:-210px;
     }
-   
+    #call_container{
+
+        transition:2s;
+        opacity:0;
+    }
     
 </style>
 
@@ -110,6 +114,7 @@
 </head>
 <body>
         <h2>Welcome to Video Call Homepage</h2>
+       <div id="call_container"> 
         <div>
             <img src="images/videocall.png" alt="">
         </div>
@@ -119,7 +124,16 @@
             <button class="b4 bi-camera"></button>
             <button id="b2">End Call</button>
         </div>
+    </div>
 </body>
+<script>
+    let container = document.getElementById("call_container");
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        container.style.opacity = "1";
+    });
+
+</script>
 </html>
 
 

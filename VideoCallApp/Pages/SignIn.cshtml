@@ -42,10 +42,15 @@
 
             margin-bottom:15px;
         }
+        #form_container{
+            transition : 2s;
+            opacity : 0;
+
+        }
     </style>
     <title> Sign Up </title>
 </head>
-<form method="post" enctype="multipart/form-data">
+<form id="form_container" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend>Sign Up</legend>
         <label asp-for="theViewModel.FirstName">First name</label>
@@ -79,3 +84,11 @@
         <br />
     </fieldset>
 </form>
+<script>
+
+    let container = document.getElementById("form_container");
+
+    document.addEventListener('DOMContentLoaded', () => {
+        container.style.opacity = "1";
+    });
+</script>
