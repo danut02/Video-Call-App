@@ -1,8 +1,11 @@
-﻿@page
+﻿
+
+@page
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 <style>
     body{
         background-color: #e5c7ca;
@@ -64,6 +67,7 @@
         text-decoration-line: none;
         color: rgb(17, 21, 19);
     }
+<<<<<<< HEAD
 </style>
 <div class="text-center">
     @if(Model.theUser.UserId is 0 || Model.theUser.Username is "" || Model.theUser.Password is "" || Model.theUser.UserEmail is ""){
@@ -91,3 +95,118 @@
         </table>
     }   
 </div>
+=======
+
+    h2 {
+        text-align:center;
+    }
+
+    button {
+        width: 240px;
+        margin-left: 850px;
+        margin-bottom:40px;
+        border-radius: 10px;
+        border-width: 0;
+        
+    }
+
+    #b1 {
+        width: 100px;
+        border-radius: 15px;
+        border-width: 0;
+        background-color: green;
+        color: whitesmoke;
+        margin-bottom: 40px;
+        transition: 1s;
+        margin-top:20px;
+    }
+
+    #b2 {
+        width: 100px;
+        border-radius: 15px;
+        border-width: 0;
+        background-color: red;
+        color: whitesmoke;
+        margin-bottom: 40px;
+        transition: 1s;
+        position:relative;
+        top:-245px;
+        left:180px;
+    }
+
+    .b3 {
+        width: 100px;
+        border-radius: 15px;
+        border-width: 0;
+        background-color: red;
+        color: whitesmoke;
+        margin-bottom: 40px;
+        transition: 1s;
+        position:relative;
+        top:-113px;
+        left:-210px;
+    }
+
+    .b4 {
+        width: 100px;
+        border-radius: 15px;
+        border-width: 0;
+        background-color: red;
+        color: whitesmoke;
+        margin-bottom: 40px;
+        transition: 1s;
+        position: relative;
+        top:-180px;
+    }
+
+    #b1:hover {
+        background-color: darkgreen;
+        font-size: larger;
+    }
+
+    #b2:hover {
+        background-color: darkred;
+        font-size: larger;
+    }
+
+    .b3:hover {
+        background-color: darkgreen;
+        font-size: larger;
+    }
+
+    .b4:hover {
+        background-color: darkgreen;
+        font-size: larger;
+    }
+
+    img {
+        margin-left:250px;
+    }
+
+    #containerbutt {
+        margin-left:-210px;
+    }
+   
+    
+</style>
+
+<html>
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+        <h2>Welcome to Video Call Homepage</h2>
+        <div>
+            <img src="images/videocall.png" alt="">
+        </div>
+        <div id="containerbutt">
+            <button id="b1">Start Call</button>
+            <button class="b3 bi-mic"></button>
+            <button class="b4 bi-camera"></button>
+            <button id="b2">End Call</button>
+        </div>
+</body>
+</html>
+
+
+>>>>>>> main
