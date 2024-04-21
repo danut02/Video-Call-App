@@ -1,0 +1,113 @@
+﻿@page
+@model AboutModel
+@{
+    ViewData["Title"] = "Profile";
+}
+<style>
+
+    body{
+
+        background-color: #e5c7ca;
+    }
+
+    button {
+        width: 100px;
+        margin-left: 10px;
+        margin-bottom: 40px;
+        border-radius: 10px;
+        border-width: 0;
+    }
+
+    #b1 {
+        width: 100px;
+        border-radius: 15px;
+        border-width: 0;
+        background-color: red;
+        color: whitesmoke;
+        margin-bottom: 40px;
+        transition: 1s;
+        margin-top: 20px;
+    }
+
+    #b1:hover {
+        background-color: darkred;
+        font-size: larger;
+    }
+
+    #b2 {
+        width: 100px;
+        border-radius: 15px;
+        border-width: 0;
+        background-color: green;
+        color: whitesmoke;
+        margin-bottom: 40px;
+        transition: 1s;
+        margin-top: 20px;
+    }
+
+    #profilepic{
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        margin-left: 20px;
+    }
+
+    header{
+        background-color:white;
+        border-radius:10px;
+        border-width:0;
+    }
+
+    h2 {
+        margin-left:10px;
+    }
+
+    p{
+        margin-left:10px;
+    }
+
+
+</style>
+<h1>@ViewData["Title"]</h1>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<header>
+    <div>
+        <img id="profilepic" src="~/images/logo1_joc.png">
+    </div>
+
+    <section>
+        <h2>User Information</h2>
+        <p>Username</p>
+        <p>Email Address</p>
+        <button>Friend List</button>
+    </section>
+
+    <section>
+        <h2>Status</h2>
+        <button id="b2">On</button>
+        <button id="b1">Off</button>
+    </section>
+
+    <section>
+        <h2>History</h2>
+        <button>History Calls</button>
+    </section>
+
+    <section>
+        <button id="b1">Log out</button>
+        <button id="b1">Delete Account</button>
+
+    </section>
+ </header>
+
+</body>
+</html>
