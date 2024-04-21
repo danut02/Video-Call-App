@@ -7,7 +7,7 @@
 namespace VideoCallApp.Migrations
 {
     /// <inheritdoc />
-    public partial class migrationone : Migration
+    public partial class MigrationOne : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,7 +35,7 @@ namespace VideoCallApp.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserEmail = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -68,6 +68,12 @@ namespace VideoCallApp.Migrations
                 name: "IX_Users_ImageId",
                 table: "Users",
                 column: "ImageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_UserEmail",
+                table: "Users",
+                column: "UserEmail",
+                unique: true);
         }
 
         /// <inheritdoc />

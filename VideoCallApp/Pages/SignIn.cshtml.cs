@@ -22,6 +22,12 @@ namespace VideoCallApp.Pages
         {
             Image _toAddImage = new Image();
 
+            if(_dbContex.Users.Where(e => e.UserEmail == theViewModel.UserEmail).Any())
+            {
+                AuditLog.addSameEmailError();
+                return RedirectToPage("Error");
+            }
+            
             if (theViewModel.Password != theViewModel.PasswordCopy)
             {
                 AuditLog.addWrongPasswordSignUp();
