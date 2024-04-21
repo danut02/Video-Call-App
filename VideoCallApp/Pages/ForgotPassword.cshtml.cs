@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-<<<<<<< HEAD
 using VideoCallApp.Data;
 using VideoCallApp.Models;
 using static System.Net.Mime.MediaTypeNames;
@@ -38,15 +37,3 @@ namespace VideoCallApp.Pages
         
     }
 }
-=======
-
-namespace VideoCallApp.Pages
-{
-    public class ForgotPassword : PageModel
-    {
-        public void OnGet()
-        {
-        }
-    }
-}
->>>>>>> main

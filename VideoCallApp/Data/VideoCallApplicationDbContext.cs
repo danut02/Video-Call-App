@@ -19,6 +19,8 @@ namespace VideoCallApp.Data
                 WithMany(e => e.Users).
                 HasForeignKey(e => e.ImageId).
                 IsRequired().OnDelete(DeleteBehavior.ClientSetNull);
+            modelBuilder.Entity<User>().HasIndex(e => e.UserEmail).
+                IsUnique();
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Image> Images { get; set; }   

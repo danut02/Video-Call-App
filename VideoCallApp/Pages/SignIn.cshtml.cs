@@ -25,9 +25,14 @@ namespace VideoCallApp.Pages
 
         public IActionResult OnPost()
         {
-<<<<<<< HEAD
             Image _toAddImage = new Image();
-
+            
+            if (_dbContext.Users.Where(e => e.UserEmail == theViewModel.UserEmail).Any())
+            {
+                AuditLog.addSameEmailError();
+                return RedirectToPage("Error");
+            }
+            
             if (theViewModel.Password != theViewModel.PasswordCopy)
             {
                 AuditLog.addWrongPasswordSignUp();
@@ -57,13 +62,13 @@ namespace VideoCallApp.Pages
                     {
                         Name = theViewModel.ProfileImageUrl.FileName,
                     };
-                    _dbContex.Images.Add(_toAddImage);
-                    _dbContex.SaveChanges();
+                    _dbContext.Images.Add(_toAddImage);
+                    _dbContext.SaveChanges();
                     using (var fileStream = new FileStream("wwwroot/images/" + theViewModel.ProfileImageUrl.FileName, FileMode.Create))
                     {
                         theViewModel.ProfileImageUrl.CopyTo(fileStream);
                     }
-                    var theImage = _dbContex.Images.ToList();
+                    var theImage = _dbContext.Images.ToList();
                     theImage = theImage.Where(e => e.Name == theViewModel.ProfileImageUrl.FileName).ToList();
                     user.ImageId = theImage.ElementAt(0).Id;
                 }
@@ -78,70 +83,9 @@ namespace VideoCallApp.Pages
                         user.ImageId = 2;
                     }
                 }
-=======
-            if (!ModelState.IsValid)
-            {
-                // Revenim la pagina de signin dacă modelul nu este valid
-                return Page();
->>>>>>> main
-            }
-
-            if (theViewModel.Password != theViewModel.PasswordCopy)
-            {
-<<<<<<< HEAD
-                if(theViewModel.Gender == "Female")
-                {
-                    user.ImageId = 1;
-                }
-                else
-                {
-                    user.ImageId = 2;
-                }
-            }
-
-            _dbContex.Users.Add(user);
-            _dbContex.SaveChanges();
-
-=======
-                // Afișăm o eroare și revenim la pagina de signin
-                ModelState.AddModelError(string.Empty, "Password and Confirm Password do not match.");
-                return Page();
-            }
-
-            var user = new User
-            {
-                FirstName = theViewModel.FirstName,
-                LastName = theViewModel.LastName,
-                Username = theViewModel.Username,
-                Password = theViewModel.Password,
-                UserEmail = theViewModel.UserEmail,
-                Gender = theViewModel.Gender
-            };
-
-            if (theViewModel.ProfileImageUrl != null)
-            {
-                var image = new Image
-                {
-                    Name = theViewModel.ProfileImageUrl.FileName
-                };
-
-                using (var fileStream = new FileStream("wwwroot/images/" + theViewModel.ProfileImageUrl.FileName, FileMode.Create))
-                {
-                    theViewModel.ProfileImageUrl.CopyTo(fileStream);
-                }
-
-                _dbContext.Images.Add(image);
+                _dbContext.Users.Add(user);
                 _dbContext.SaveChanges();
-
-                // Setăm id-ul imaginii asociate utilizatorului
-                user.ImageId = image.Id;
             }
-
-            _dbContext.Users.Add(user);
-            _dbContext.SaveChanges();
-
-            // Redirectăm către pagina de login după înregistrare
->>>>>>> main
             return RedirectToPage("LogIn");
         }
     }

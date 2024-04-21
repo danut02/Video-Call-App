@@ -1,0 +1,23 @@
+﻿@page "{userId:int}"
+@model VideoCallApp.Pages.VideoCallOtherUserModel
+@{
+}
+<div>
+    <div>
+        <p>User: @Model.thatUser.Username</p>
+        <p>First name: @Model.thatUser.FirstName</p>
+        <p>Last name: @Model.thatUser.LastName</p>
+        <p>Gender: @Model.thatUser.Gender</p>
+        <p>
+            Image profile:
+            @foreach (var image in Model.images)
+            {
+                @if (image.Id == Model.thatUser.ImageId)
+                {
+                    <img src="/images/@image.Name" alt="No image found" style="width:100px;height:100px;">
+                    break;
+                }
+            }
+        </p>
+    </div>
+</div>
