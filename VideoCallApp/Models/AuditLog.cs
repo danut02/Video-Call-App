@@ -16,9 +16,5 @@
         {
             getAuditLog().Add("Password is written wrong while signing up. " + DateTime.Now);
         }
-        public static void addSameEmailError()
-        {
-            getAuditLog().Add("There is an existing email. " + DateTime.Now);
-        }
     }
 }

@@ -82,7 +82,7 @@ namespace VideoCallApp.Migrations
 
                     b.Property<string>("UserEmail")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -91,9 +91,6 @@ namespace VideoCallApp.Migrations
                     b.HasKey("UserId");
 
                     b.HasIndex("ImageId");
-
-                    b.HasIndex("UserEmail")
-                        .IsUnique();
 
                     b.ToTable("Users");
                 });
