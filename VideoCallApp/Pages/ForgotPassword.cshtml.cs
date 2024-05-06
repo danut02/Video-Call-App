@@ -20,14 +20,14 @@ namespace VideoCallApp.Pages
         }
         public IActionResult OnPost() 
         {
-            var list = new List<User>();
+            var user = new User();
             if (theModel is not null)
             {
-                list = _dbContext.Users.Where(e => e.UserEmail == theModel.UserEmail).ToList();
+                user = _dbContext.Users.Single(e => e.UserEmail == theModel.UserEmail);
             }
-            if (list.Count > 0)
+            if (user is not null)
             {
-                return RedirectToPage("Show", list.ElementAt(0));
+                return RedirectToPage("Show", user);
             }
             else
             {
