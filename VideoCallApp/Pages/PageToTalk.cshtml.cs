@@ -5,8 +5,14 @@ namespace VideoCallApp.Pages
 {
     public class PageToTalkModel : PageModel
     {
-        public void OnGet()
+        [BindProperty]
+        public int UsersId { get; set; }
+        [BindProperty]
+        public int TheOtherUserId { get; set; }
+        public void OnGet(int otherUserId, int userId)
         {
+            TheOtherUserId=otherUserId;
+            UsersId=userId; 
         }
     }
 }

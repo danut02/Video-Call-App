@@ -72,20 +72,20 @@ namespace VideoCallApp.Pages
                     theImage = theImage.Where(e => e.Name == theViewModel.ProfileImageUrl.FileName).ToList();
                     user.ImageId = theImage.ElementAt(0).Id;
                 }
+            }
+            else
+            {
+                if (theViewModel.Gender == "Female")
+                {
+                    user.ImageId = 1;
+                }
                 else
                 {
-                    if (theViewModel.Gender == "Female")
-                    {
-                        user.ImageId = 1;
-                    }
-                    else
-                    {
-                        user.ImageId = 2;
-                    }
+                    user.ImageId = 2;
                 }
-                _dbContext.Users.Add(user);
-                _dbContext.SaveChanges();
             }
+            _dbContext.Users.Add(user);
+            _dbContext.SaveChanges();
             return RedirectToPage("LogIn");
         }
     }
