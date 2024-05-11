@@ -150,6 +150,7 @@
             }
         ]
     }
+    var buttonEnd = document.getElementById("b2");
     var buttonFinalAnswer = document.getElementById("FinalAnswerGenerated");
     var buttonMic = document.getElementById("buttonMic");
     var buttonCam = document.getElementById("buttonCamera");
@@ -391,5 +392,9 @@
         if(!peerConnection.currentRemoteDescription){
             peerConnection.setRemoteDescription(contentFromTheAnswer);
         }
+    }
+    buttonEnd.onclick = endCall;
+    function endCall() {
+        window.history.back();
     }
 </script>
