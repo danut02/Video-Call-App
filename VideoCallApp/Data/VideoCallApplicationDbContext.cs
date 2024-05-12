@@ -3,9 +3,10 @@ using VideoCallApp.Models;
 
 namespace VideoCallApp.Data
 {
-    public class VideoCallApplicationDbContext:DbContext
+    public class VideoCallApplicationDbContext : DbContext
     {
-        public VideoCallApplicationDbContext(DbContextOptions<VideoCallApplicationDbContext> options):base(options) {
+        public VideoCallApplicationDbContext(DbContextOptions<VideoCallApplicationDbContext> options) : base(options)
+        {
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,8 +20,14 @@ namespace VideoCallApp.Data
                 WithMany(e => e.Users).
                 HasForeignKey(e => e.ImageId).
                 IsRequired().OnDelete(DeleteBehavior.ClientSetNull);
+            modelBuilder.Entity<User>()
+               .HasOne(u => u.Friends)
+               .WithOne(e => e.User)
+               .HasForeignKey<Friends>(f => f.UserId)
+               .IsRequired(false); 
         }
         public DbSet<User> Users { get; set; }
-        public DbSet<Image> Images { get; set; }   
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Friends> Friends { get; set; }
     }
 }
