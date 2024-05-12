@@ -4,6 +4,25 @@
        container.style.opacity = "1";
    }); 
    
+  
+function StartCall() {
+    let idleImg = document.getElementById("img_idle");
+    let webcam = document.getElementById("webcam");
+    idleImg.style.opacity = 0;
+    if (navigator.mediaDevices.getUserMedia) {
+
+        navigator.mediaDevices.getUserMedia({ video: true }).
+            then(function (stream) {
+                webcam.srcObject = stream;
+
+            }
+
+            );
+    }
+    else
+        console.log("Can't use your webcam");
+
+}
    async function call()
    {
 

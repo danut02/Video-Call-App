@@ -95,15 +95,25 @@
 
     img {
         margin-left:250px;
+        transition:1s;
     }
 
-    #containerbutt {
+    #containerbuttons {
         margin-left:-210px;
     }
     #call_container{
 
         transition:2s;
         opacity:0;
+    }
+    #webcam{
+       
+        position:absolute;
+        left:29%;
+        height:500px;
+        width:850px;
+      border:2px red solid;
+
     }
     
 </style>
@@ -116,10 +126,11 @@
         <h2>Welcome to Video Call Homepage</h2>
        <div id="call_container"> 
         <div>
-            <img src="images/videocall.png" alt="">
+            <img id="img_idle" src="images/videocall.png" alt="">
+            <video id="webcam" autoplay="true"></video>
         </div>
-        <div id="containerbutt">
-            <button id="b1">Start Call</button>
+        <div id="containerbuttons">
+            <button id="b1" onclick="StartCall()">Start Call</button>
             <button class="b3 bi-mic"></button>
             <button class="b4 bi-camera"></button>
             <button id="b2">End Call</button>
