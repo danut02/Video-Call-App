@@ -2,14 +2,14 @@
 using System;
 namespace VideoCallApp.Models
 {
-    public class Message
+    public class MessageModel
     {
-        public Message(int ID,string text)
+       /* public MessageModel(int ID,string text)
         {
 
             MsgID = ID;
             MsgText = text;
-        }
+        }*/
         [Key]
         public int MsgID { get; set; }
         public string MsgText { get; set; }

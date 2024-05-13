@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using NUnit.Framework;
 using System.ComponentModel.DataAnnotations;
+using VideoCallApp.Models;
 namespace VideoCallApp.Test
 {
     public class Tests
@@ -16,19 +17,33 @@ namespace VideoCallApp.Test
             [Test]
             public void Test1()
             {
-                // Arrange
-                string text = "test";
-                int ID = 25;
-                
+                string expectedText = "test";
+                int expectedID = 25;
 
                 // Act
-                var message = new Message(ID,text);
+                var message = new MessageModel
+                {
+                    MsgID = expectedID,
+                    MsgText = expectedText
+                };
 
                 // Assert
-                Assert.AreEqual(ID, message.ID);
-                Assert.AreEqual(text, message.text);
+                Assert.AreEqual(expectedID, message.MsgID);
+                Assert.AreEqual(expectedText, message.MsgText);
 
 
+            }
+            [Test]
+            public void Test2()
+            {
+
+                DateTime date1= DateTime.Now;
+                var message = new MessageModel
+                {
+
+                    MsgSendDate = date1
+                };
+                Assert.AreEqual(date1, message.MsgSendDate);
             }
         }
     }

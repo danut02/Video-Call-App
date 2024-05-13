@@ -5,7 +5,10 @@ VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoCallApp", "VideoCallApp\VideoCallApp.csproj", "{475B0C57-4C5D-4460-A7D0-BBC53CD257CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoCallApp.Test", "VideoCallApp.Test\VideoCallApp.Test.csproj", "{6F79D335-24F2-42D0-9433-BF2BC5115E8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoCallApp.Test", "VideoCallApp.Test\VideoCallApp.Test.csproj", "{6F79D335-24F2-42D0-9433-BF2BC5115E8E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{475B0C57-4C5D-4460-A7D0-BBC53CD257CF} = {475B0C57-4C5D-4460-A7D0-BBC53CD257CF}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
