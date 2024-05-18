@@ -16,7 +16,6 @@ function StartCall() {
                 webcam.srcObject = stream;
 
             }
-
             );
     }
     else
