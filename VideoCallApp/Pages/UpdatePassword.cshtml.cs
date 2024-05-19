@@ -3,15 +3,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using VideoCallApp.Models;
 using VideoCallApp.Data;
 using Microsoft.AspNetCore.SignalR;
+using VideoCallApp.Repository.Interface;
 
 namespace VideoCallApp.Pages
 {
     public class UpdatePasswordModel : PageModel
     {
-        private VideoCallApplicationDbContext _dbContext;
-        public UpdatePasswordModel(VideoCallApplicationDbContext dbContext)
+        private IUserRepository _users;
+        public UpdatePasswordModel(IUserRepository _usersContext)
         {
-            _dbContext = dbContext;
+            _users = _usersContext;
         }
         [BindProperty]
         public UserViewModel theModel {  get; set; }
@@ -19,47 +20,25 @@ namespace VideoCallApp.Pages
         public User theChangedUser {  get; set; }
         public void OnGet(int UserId)
         {
-            theChangedUser = _dbContext.Users.Find(UserId);
+            theChangedUser = _users.GetById(UserId);
         }
         public IActionResult OnPost()
         {
-            var theUserToChange = new User();
-            var theSelectedUser = new User();
-            var Users = _dbContext.Users.ToList();
-            theSelectedUser = _dbContext.Users.Find(theChangedUser.UserId);
-            theUserToChange = _dbContext.Users.Find(theChangedUser.UserId);
+            User theUserToChange = new User();
+            User theSelectedUser = new User();
+            List<User> Users = _users.GetAll();
             if (theModel is not null)
             {
+                theSelectedUser = _users.GetById(theChangedUser.UserId);
+                theUserToChange = _users.GetById(theChangedUser.UserId);
                 if (Users.Where(e => e.Password == theModel.Password && e.UserId == theSelectedUser.UserId).Any())
                 {
-                    if (theModel.Password == theSelectedUser.Password)
-                    {
-
-                        theUserToChange.Username = theSelectedUser.Username;
-                        theUserToChange.UserEmail = theSelectedUser.UserEmail;
-                        theUserToChange.Password = theModel.PasswordNew;
-                        theUserToChange.Gender = theSelectedUser.Gender;
-                        theUserToChange.FirstName = theSelectedUser.FirstName;
-                        theUserToChange.LastName = theSelectedUser.LastName;
-                        theUserToChange.ImageId = theSelectedUser.ImageId;
-                        theUserToChange.UserId = theSelectedUser.UserId;
-                        _dbContext.SaveChanges();
-                    }
-                    else
-                    {
-                        theUserToChange.Username = theSelectedUser.Username;
-                        theUserToChange.UserEmail = theSelectedUser.UserEmail;
-                        theUserToChange.Password = theModel.Password;
-                        theUserToChange.Gender = theSelectedUser.Gender;
-                        theUserToChange.FirstName = theSelectedUser.FirstName;
-                        theUserToChange.LastName = theSelectedUser.LastName;
-                        theUserToChange.ImageId = theSelectedUser.ImageId;
-                        theUserToChange.UserId = theSelectedUser.UserId;
-                        _dbContext.SaveChanges();
-                    }
+                    _users.UpdateUserPassword(theUserToChange,theModel.Password,theModel.PasswordNew, theSelectedUser);
                 }
             }
-            return RedirectToPage("VideoCallProfile", theUserToChange);
+            theSelectedUser = _users.GetById(theChangedUser.UserId);
+            return StatusCode(200, theSelectedUser);
+            //return RedirectToPage("VideoCallProfile", theUserToChange);
         }
     }
 }

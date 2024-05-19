@@ -3,6 +3,7 @@ using VideoCallApp.Models;
 using VideoCallApp.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Net.WebSockets;
 
 namespace VideoCallApp.Pages
 {
@@ -19,11 +20,8 @@ namespace VideoCallApp.Pages
         public int TheOtherUserId { get; set; }
         [BindProperty]
         public User theUser { get; set; }
-        public void OnGet(int otherUserId, int userId)
+        public void OnGet()
         {
-            TheOtherUserId=otherUserId;
-            UsersId=userId;
-            theUser = theDatabase.Users.Find(userId);
         }
     }
 }

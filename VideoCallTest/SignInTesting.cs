@@ -1,5 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VideoCallApp.Pages;
 using VideoCallApp.Models;
 using VideoCallApp;
 using System.Diagnostics;
@@ -9,9 +8,9 @@ namespace VideoCallTest
     public class SignInTesting
     {
         [TestMethod]
-        public void SignInTestCorect_And_Incorect()
+        public void SignInTestCorect_And_IncorectPassword()
         {
-            UserViewModel theUser = new UserViewModel()
+            UserViewModelTest theUser = new UserViewModelTest()
             {
                 FirstName = "NameOfUser",
                 LastName = "LastOfUser",
@@ -21,7 +20,7 @@ namespace VideoCallTest
                 UserEmail = "mail@mail2com.com",
                 Gender = "Male",
             };
-            UserViewModel theUser2 = new UserViewModel()
+            UserViewModelTest theUser2 = new UserViewModelTest()
             {
                 FirstName = "NameOfUser",
                 LastName = "LastOfUser",
@@ -43,7 +42,7 @@ namespace VideoCallTest
         [TestMethod]
         public void SignInWithout_Image()
         {
-            UserViewModel theUser = new UserViewModel()
+            UserViewModelTest theUser = new UserViewModelTest()
             {
                 FirstName = "NameOfUser",
                 LastName = "LastOfUser",
@@ -54,7 +53,7 @@ namespace VideoCallTest
                 Gender = "Male",
                 theImage = null,
             };
-            UserViewModel theUser2 = new UserViewModel()
+            UserViewModelTest theUser2 = new UserViewModelTest()
             {
                 FirstName = "NameOfUser",
                 LastName = "LastOfUser",
@@ -65,7 +64,7 @@ namespace VideoCallTest
                 Gender = "Female",
                 theImage = null,
             };
-            UserViewModel theUser3 = new UserViewModel()
+            UserViewModelTest theUser3 = new UserViewModelTest()
             {
                 FirstName = "NameOfUser",
                 LastName = "LastOfUser",
@@ -91,7 +90,7 @@ namespace VideoCallTest
         [TestMethod]
         public void SignIn_WithImages()
         {
-            var theUser = new UserViewModel()
+            var theUser = new UserViewModelTest()
             {
                 FirstName = "NameOfUser",
                 LastName = "LastOfUser",
@@ -102,7 +101,7 @@ namespace VideoCallTest
                 Gender = "Male",
                 theImage = "null.jpg",
             };
-            var theUser2 = new UserViewModel()
+            var theUser2 = new UserViewModelTest()
             {
                 FirstName = "NameOfUser",
                 LastName = "LastOfUser",
@@ -113,7 +112,7 @@ namespace VideoCallTest
                 Gender = "Male",
                 theImage = "null.pdf",
             };
-            var theUser3 = new UserViewModel()
+            var theUser3 = new UserViewModelTest()
             {
                 FirstName = "NameOfUser",
                 LastName = "LastOfUser",
@@ -124,7 +123,7 @@ namespace VideoCallTest
                 Gender = "Male",
                 theImage = "null.png",
             };
-            var theUser4 = new UserViewModel()
+            var theUser4 = new UserViewModelTest()
             {
                 FirstName = "NameOfUser",
                 LastName = "LastOfUser",
@@ -151,19 +150,19 @@ namespace VideoCallTest
             Assert.IsTrue(result4);
         }
         [TestMethod]
-        public void SignIn_WithTheSameMail()
+        public void SignIn_WithTheSameMailOrNot()
         {
-            List<UserViewModel> theUserss = new List<UserViewModel>() {
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail2com.com"},
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail3com.com"},
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail4com.com"},
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail5com.com"},
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail6com.com"},
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail7com.com"},
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail8com.com"},
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail9com.com"},
+            List<UserViewModelTest> theUserss = new List<UserViewModelTest>() {
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail2com.com"},
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail3com.com"},
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail4com.com"},
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail5com.com"},
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail6com.com"},
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail7com.com"},
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail8com.com"},
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail9com.com"},
             };
-            UserViewModel theUserToSignIn = new UserViewModel()
+            UserViewModelTest theUserToSignIn = new UserViewModelTest()
             {
                 FirstName = "NameOfUser",
                 LastName = "LastOfUser",
@@ -172,17 +171,17 @@ namespace VideoCallTest
                 PasswordCopy = "password",
                 UserEmail = "mail@mail2com.com"
             };
-            List<UserViewModel> theUserss2 = new List<UserViewModel>() {
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail2com.com"},
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail3com.com"},
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail4com.com"},
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail5com.com"},
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail6com.com"},
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail7com.com"},
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail8com.com"},
-                new UserViewModel{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail9com.com"},
+            List<UserViewModelTest> theUserss2 = new List<UserViewModelTest>() {
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail2com.com"},
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail3com.com"},
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail4com.com"},
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail5com.com"},
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail6com.com"},
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail7com.com"},
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail8com.com"},
+                new UserViewModelTest{FirstName = "NameOfUser",LastName = "LastOfUser",Username = "coolUserThatWritesThese",Password = "password",PasswordCopy = "password",UserEmail = "mail@mail9com.com"},
             };
-            UserViewModel theUserToSignIn2 = new UserViewModel()
+            UserViewModelTest theUserToSignIn2 = new UserViewModelTest()
             {
                 FirstName = "NameOfUser",
                 LastName = "LastOfUser",

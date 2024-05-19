@@ -156,7 +156,6 @@
     var buttonCam = document.getElementById("buttonCamera");
     var local = document.getElementById("LocalAudio");
     var localCam = document.getElementById("LocalCamera");
-    var localStream;
     var Receiver = document.getElementById("ReceiverCamera");
     var listDevicesCamera = document.getElementById("devicesCamera");
     var listDevicesAudio = document.getElementById("devicesAudio");
@@ -167,13 +166,6 @@
     var peerConnection = new RTCPeerConnection(configuration);
     var counterMic = 0;
     var counterCam = 0;
-    window.addEventListener("load", init());
-    function init() {
-        localStream = navigator.mediaDevices.getUserMedia({
-            video: true,
-            audio: false
-        });
-    }
     buttonMic.onclick = microphoneOnOff;
     function microphoneOnOff() {
         counterMic++;

@@ -4,9 +4,9 @@ namespace VideoCallApp
 {
     public class LogInClass
     {
-        public UserViewModel theUser { get; private set; }
-        public List<UserViewModel> theUsers { get; set; }
-        public LogInClass(UserViewModel user, List<UserViewModel> users)
+        public UserViewModelTest theUser { get; private set; }
+        public List<UserViewModelTest> theUsers { get; set; }
+        public LogInClass(UserViewModelTest user, List<UserViewModelTest> users)
         {
             theUsers = users;
             theUser = user;

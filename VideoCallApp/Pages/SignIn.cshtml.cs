@@ -3,17 +3,20 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using VideoCallApp.Data;
 using VideoCallApp.Models;
-using System.IO; // Pentru FileStream
+using System.IO;
+using VideoCallApp.Repository;
+using VideoCallApp.Repository.Interface;
 
 namespace VideoCallApp.Pages
 {
     public class SignInModel : PageModel
     {
-        private readonly VideoCallApplicationDbContext _dbContext;
-
-        public SignInModel(VideoCallApplicationDbContext dbContext)
+        private readonly IImageRepository _images;
+        private readonly IUserRepository _users;
+        public SignInModel(IUserRepository _userRepo, IImageRepository _imageRepo)
         {
-            _dbContext = dbContext;
+            _images = _imageRepo;
+            _users = _userRepo; 
         }
 
         [BindProperty]
@@ -22,12 +25,11 @@ namespace VideoCallApp.Pages
         public void OnGet()
         {
         }
-
         public IActionResult OnPost()
         {
             Image _toAddImage = new Image();
             
-            if (_dbContext.Users.Where(e => e.UserEmail == theViewModel.UserEmail).Any())
+            if (_users.GetAll().Where(e => e.UserEmail == theViewModel.UserEmail).Any())
             {
                 AuditLog.addSameEmailError();
                 return RedirectToPage("Error");
@@ -62,13 +64,12 @@ namespace VideoCallApp.Pages
                     {
                         Name = theViewModel.ProfileImageUrl.FileName,
                     };
-                    _dbContext.Images.Add(_toAddImage);
-                    _dbContext.SaveChanges();
+                    _images.AddImage(_toAddImage);
                     using (var fileStream = new FileStream("wwwroot/images/" + theViewModel.ProfileImageUrl.FileName, FileMode.Create))
                     {
                         theViewModel.ProfileImageUrl.CopyTo(fileStream);
                     }
-                    var theImage = _dbContext.Images.ToList();
+                    var theImage = _images.GetAll();
                     theImage = theImage.Where(e => e.Name == theViewModel.ProfileImageUrl.FileName).ToList();
                     user.ImageId = theImage.ElementAt(0).Id;
                 }
@@ -84,8 +85,7 @@ namespace VideoCallApp.Pages
                     user.ImageId = 2;
                 }
             }
-            _dbContext.Users.Add(user);
-            _dbContext.SaveChanges();
+            _users.AddUser(user);
             return RedirectToPage("LogIn");
         }
     }

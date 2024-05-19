@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes;
-using VideoCallApp.Models;
+﻿using VideoCallApp.Models;
 
 namespace VideoCallApp
 {
     public class SignInClassTest
     {
-        public UserViewModel theUser { get; private set; }
-        public List<UserViewModel> theUsers { get; set; }
-        public SignInClassTest(UserViewModel user)
+        public UserViewModelTest theUser { get; private set; }
+        public List<UserViewModelTest> theUsers { get; set; }
+        public SignInClassTest(UserViewModelTest user)
         {
             theUser = user;
         }
@@ -49,7 +48,7 @@ namespace VideoCallApp
         }
         public bool SignInWithTheSameMailOrNot()
         {
-            UserViewModel theFoundUser = theUsers.FirstOrDefault(e => e.UserEmail == theUser.UserEmail);
+            UserViewModelTest theFoundUser = theUsers.FirstOrDefault(e => e.UserEmail == theUser.UserEmail);
             if (theFoundUser is not null)
             {
                 return true;
