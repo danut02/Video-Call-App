@@ -1,5 +1,6 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using VideoCallApp.Data;
+using Quobject.SocketIoClientDotNet.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +19,28 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+string serverUrl = "http://localhost:7176";
 
-//comment
+var socket = IO.Socket(serverUrl);
+socket.On(Socket.EVENT_CONNECT, () =>
+{
+    Console.WriteLine("Conectat la server Socket.IO");
+});
+
+
+socket.On("message", (data) =>
+{
+    Console.WriteLine("Mesaj primit de la server: " + data);
+});
+
+
+socket.Emit("message", "Hello from .NET client!");
+
+Console.WriteLine("Apasă o tastă pentru a închide programul...");
+Console.ReadKey();
+
+
+socket.Disconnect();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

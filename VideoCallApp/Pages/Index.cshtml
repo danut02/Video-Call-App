@@ -5,7 +5,13 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" xmlns="">
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" xmlns="">
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
 <style>
     body{
     background-color: #e5c7ca;
@@ -57,7 +63,7 @@
         margin-bottom: 40px;
         transition: 1s;
         position:relative;
-        top:-113px;
+        top:-118px;
         left:-210px;
     }
 
@@ -78,19 +84,13 @@
         font-size: larger;
     }
 
-    #b2:hover {
-        background-color: darkred;
-        font-size: larger;
-    }
+    
 
-    .b3:hover {
-        background-color: darkgreen;
-        font-size: larger;
-    }
+    
 
     .b4:hover {
         background-color: darkgreen;
-        font-size: larger;
+        
     }
 
     img {
@@ -115,31 +115,42 @@
       border:2px red solid;
 
     }
+
+    #other_user{
+        border-width:1px;
+        position:relative;
+        top:100px;
+        left:25px;
+        background-color: rgba(0,0,0,0.5);
+        border-radius:5px;
+
+    }
     
 </style>
 
-<html>
-<head>
-    <link href="~/Content/Site.css" rel="stylesheet" />
-</head>
+
+
 <body>
-        <h2>Welcome to Video Call Homepage</h2>
+        <h2>Welcome to Video Call</h2>
        <div id="call_container"> 
         <div>
-            <img id="img_idle" src="images/videocall.png" alt="">
-            <video id="webcam" autoplay="true"></video>
+            <img id="img_idle" src="images/videocall.png" alt="img">
+            <video id="webcam" autoplay muted></video>
+            <video id="other_user" autoplay>  </video>
+            
         </div>
         <div id="containerbuttons">
             <button id="b1" onclick="StartCall()">Start Call</button>
-            <button class="b3 bi-mic"></button>
+            <button class="b3 bi-mic" onclick="mic_on()"></button>
             <button class="b4 bi-camera"></button>
-            <button id="b2">End Call</button>
+            <button id="b2" onclick="EndCall()">End Call</button>
         </div>
     </div>
 </body>
-<script src="~/js/connection.js">
+<script src="http://localhost:5197/socket.io/socket.io.js"></script>
+<script src="~/js/connection.js"/>
 
-</script>
+
 
 
 </html>

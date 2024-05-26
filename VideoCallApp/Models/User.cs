@@ -13,7 +13,7 @@ namespace VideoCallApp.Models
         public string UserEmail { get; set; } = string.Empty;
         public string Gender { get; set; } = string.Empty;
         public int ImageId {  get; set; }
-        public Image theImage { get; set; }
+        public Image theImage {get; set; }
         public List<MessageModel> message { get; set; }
     }
 }
