@@ -1,16 +1,20 @@
 ﻿const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
-const cors = require('cors');
+const path = require('path');
+
 const app = express();
 const server = http.createServer(app);
-const io = socketIO(server);
-const { createProxyMiddleware } = require('http-proxy-middleware');
-app.use(express.static('public'));
+const io = socketIO(server, {
+    cors: {
+        origin: 'http://localhost:5197', // Adresa serverului .NET
+        methods: ["GET", "POST"],
+        credentials: true
+    }
+});
 
-
-
-app.use('/socket.io', createProxyMiddleware({ target: 'http://localhost:7176', ws: true }));
+// Servirea fișierelor statice
+app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', (socket) => {
     console.log('A user connected');
@@ -31,6 +35,7 @@ io.on('connection', (socket) => {
         console.log('User disconnected');
     });
 });
+
 server.listen(7176, () => {
     console.log('Server is running on port 7176');
 });
