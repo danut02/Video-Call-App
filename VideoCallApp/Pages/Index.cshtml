@@ -5,7 +5,13 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" xmlns="">
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
 <style>
     body{
     background-color: #e5c7ca;
@@ -52,12 +58,12 @@
         width: 100px;
         border-radius: 15px;
         border-width: 0;
-        background-color: red;
-        color: whitesmoke;
+        background-color: green;
+        color: black;
         margin-bottom: 40px;
         transition: 1s;
         position:relative;
-        top:-113px;
+        top:-118px;
         left:-210px;
     }
 
@@ -78,48 +84,90 @@
         font-size: larger;
     }
 
-    #b2:hover {
-        background-color: darkred;
-        font-size: larger;
-    }
+    
 
-    .b3:hover {
-        background-color: darkgreen;
-        font-size: larger;
-    }
+    
 
     .b4:hover {
         background-color: darkgreen;
-        font-size: larger;
+        
     }
 
     img {
         margin-left:250px;
+        transition:1s;
     }
 
-    #containerbutt {
+    #containerbuttons {
         margin-left:-210px;
     }
-   
+    #call_container{
+
+        transition:2s;
+        opacity:0;
+    }
+    #webcam{
+       
+        position:absolute;
+        left:29%;
+        height:500px;
+        width:850px;
+      border:2px red solid;
+
+    }
+
+    #other_user_container {
+        width: 400px; 
+        height: 200px; 
+        position: relative;
+        left:-200px;
+        top:50px;
+        overflow: hidden;
+    }
+
+    #other_user{
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-width:1px;
+      
+      
+        background-color: rgba(0,0,0,0.5);
+        border-radius:5px;
+
+    }
     
 </style>
 
-<html>
-<head>
-    <link href="~/Content/Site.css" rel="stylesheet" />
-</head>
+
+
 <body>
-        <h2>Welcome to Video Call Homepage</h2>
+        <h2>Welcome to Video Call</h2>
+       <div id="call_container"> 
         <div>
-            <img src="images/videocall.png" alt="">
+            <img id="img_idle" src="images/videocall.png" alt="img">
+            <video id="webcam" autoplay muted></video>
+            <div id="other_user_container">
+                <video id="other_user" autoplay></video>
+            </div>
+            
         </div>
-        <div id="containerbutt">
-            <button id="b1">Start Call</button>
-            <button class="b3 bi-mic"></button>
+        <div id="containerbuttons">
+            <button id="b1" onclick="StartCall()">Start Call</button>
+            <button class="b3 bi-mic" onclick="mic_on()"></button>
             <button class="b4 bi-camera"></button>
-            <button id="b2">End Call</button>
+            <button id="b2" onclick="EndCall()">End Call</button>
         </div>
+    </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
+<script src="~/js/connection.js"/>
+
+
+
+
 </html>
 
 
