@@ -1,12 +1,16 @@
-﻿namespace VideoCallApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace VideoCallApp.Models
 {
     public class Friends
     {
+        [Key]
+        public int Id { get; set; } 
         public string Name { get; set; }
         public int Age { get; set; }
         public string Email { get; set; }
         public User User { get; set; }
-        public User UserID { get; set; }
+        public int? UserId { get; set; }
 
         public Friends(string name, int age, string email)
         {
