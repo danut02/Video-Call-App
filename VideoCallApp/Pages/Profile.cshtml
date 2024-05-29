@@ -3,142 +3,151 @@
 @{
     ViewData["Title"] = "Profile";
 }
-<style>
-
-    body{
-
-        background-color: #e5c7ca;
-    }
-
-    button {
-        width: 100px;
-        margin-left: 10px;
-        margin-bottom: 40px;
-        border-radius: 10px;
-        border-width: 0;
-    }
-
-    #b1 {
-        width: 100px;
-        border-radius: 15px;
-        border-width: 0;
-        background-color: red;
-        color: whitesmoke;
-        margin-bottom: 40px;
-        transition: 1s;
-        margin-top: 20px;
-    }
-
-    #b1:hover {
-        background-color: darkred;
-        font-size: larger;
-    }
-
-    #b2 {
-        width: 50px;
-        border-radius: 15px;
-        border-width: 0;
-        background-color: green;
-        color: whitesmoke;
-        margin-bottom: 40px;
-        transition: 1s;
-        margin-top: 20px;
-    }
-
-    #profilepic{
-        border-radius: 50%;
-        width: 100px;
-        height: 100px;
-        margin-left: 20px;
-    }
-
-    header{
-        background-color:white;
-        border-radius:10px;
-        border-width:0;
-    }
-
-    h2 {
-        margin-left:10px;
-    }
-
-    p{
-        margin-left:10px;
-    }
-
-    #b3{
-        width: 50px;
-        border-radius: 15px;
-        border-width: 0;
-        background-color: darkred;
-        color: whitesmoke;
-        margin-bottom: 40px;
-        transition: 1s;
-        margin-top: 20px;
-    }
-
-    #b4{
-        width: 50px;
-        border-radius: 15px;
-        border-width: 0;
-        background-color: blue;
-        color: whitesmoke;
-        margin-bottom: 40px;
-        transition: 1s;
-        margin-top: 20px;
-    }
-
-
-</style>
-<h1>@ViewData["Title"]</h1>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #e5c7ca;
+        }
+
+        button {
+            width: 100px;
+            margin-left: 10px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            border-width: 0;
+        }
+
+        #b1 {
+            width: 100px;
+            border-radius: 15px;
+            border-width: 0;
+            background-color: red;
+            color: whitesmoke;
+            margin-bottom: 40px;
+            transition: 1s;
+            margin-top: 20px;
+        }
+
+            #b1:hover {
+                background-color: darkred;
+                font-size: larger;
+            }
+
+        #b2 {
+            width: 50px;
+            border-radius: 15px;
+            border-width: 0;
+            background-color: green;
+            color: whitesmoke;
+            margin-bottom: 40px;
+            transition: 1s;
+            margin-top: 20px;
+        }
+
+        #profilepic {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-left: 20px;
+        }
+
+        header {
+            background-color: white;
+            border-radius: 10px;
+            border-width: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-left: 10px;
+        }
+
+        p {
+            margin-left: 10px;
+        }
+
+        #b3 {
+            width: 50px;
+            border-radius: 15px;
+            border-width: 0;
+            background-color: darkred;
+            color: whitesmoke;
+            margin-bottom: 40px;
+            transition: 1s;
+            margin-top: 20px;
+        }
+
+        #b4 {
+            width: 50px;
+            border-radius: 15px;
+            border-width: 0;
+            background-color: blue;
+            color: whitesmoke;
+            margin-bottom: 40px;
+            transition: 1s;
+            margin-top: 20px;
+        }
+
+        #fileInput {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+    </style>
 </head>
 <body>
-<header>
-    <div>
-        <img id="profilepic" src="~/images/logo1_joc.png">
-    </div>
+    <header>
+        <div>
+            <img id="profilepic" src="~/images/logo1_joc.png" alt="Profile Picture">
+        </div>
+        <input type="file" id="fileInput" accept="image/*" onchange="previewImage(event)">
 
-    <section>
-        <h2>User Information</h2>
-        <p>Username</p>
-        <p>Email Address</p>
-        <p>Friend list</p>
-        <button class="bi bi-person-lines-fill" id="b4"></button>
-    </section>
+        <section>
+            <h2>User Information</h2>
+            <p>Username</p>
+            <p>Email Address</p>
+            <p>Friend list</p>
+            <button class="bi bi-person-lines-fill" id="b4"></button>
+        </section>
 
-    <section>
-        <h2>Status</h2>
-        <button id="b2">On</button>
-        <button id="b3">Off</button>
-   </section>
-   
-   <section>
-        <h2>Messages</h2>
-        <p>Chat</p>
-        <button class="bi bi-chat-left-text-fill" id="b4"></button>
-        <p>Call</p>
-        <button class="bi bi-telephone-forward-fill" id="b4"></button>
-    </section>
+        <section>
+            <h2>Status</h2>
+            <button id="b2">On</button>
+            <button id="b3">Off</button>
+        </section>
 
-    <section>
-        <h2>History</h2>
-        <button>History Calls</button>
-    </section>
+        <section>
+            <h2>Messages</h2>
+            <p>Chat</p>
+            <button class="bi bi-chat-left-text-fill" id="b4"></button>
+            <p>Call</p>
+            <button class="bi bi-telephone-forward-fill" id="b4"></button>
+        </section>
 
-    <section>
-        <button id="b1">Log out</button>
-        <button id="b1">Delete Account</button>
-    </section>
- </header>
+        <section>
+            <h2>History</h2>
+            <button>History Calls</button>
+        </section>
 
+        <section>
+            <button id="b1">Log out</button>
+            <button id="b1">Delete Account</button>
+        </section>
+    </header>
+
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const output = document.getElementById('profilepic');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </body>
 </html>
