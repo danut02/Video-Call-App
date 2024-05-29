@@ -36,9 +36,9 @@ namespace VideoCallApp.Pages
                     _users.UpdateUserPassword(theUserToChange,theModel.Password,theModel.PasswordNew, theSelectedUser);
                 }
             }
-            theSelectedUser = _users.GetById(theChangedUser.UserId);
-            return StatusCode(200, theSelectedUser);
-            //return RedirectToPage("VideoCallProfile", theUserToChange);
+            //theSelectedUser = _users.GetById(theChangedUser.UserId);
+            //return StatusCode(200, theSelectedUser);
+            return RedirectToPage("VideoCallProfile", theUserToChange);
         }
     }
 }

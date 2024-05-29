@@ -34,8 +34,8 @@ namespace VideoCallApp.Pages
             }
             if (user is not null)
             {
-                return StatusCode(200,user);
-                //return RedirectToPage("Show", user);
+                //return StatusCode(200,user);
+                return RedirectToPage("Show", user);
             }
             else
             {
